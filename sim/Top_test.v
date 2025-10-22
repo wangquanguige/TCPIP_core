@@ -27,8 +27,7 @@ module Top_test #(
         parameter           RAM_ADDR_WIDTH     =       14 
     )
     (
-    input                   CLK_IN_D_0_clk_p,
-    input                   CLK_IN_D_0_clk_n,
+    input                   clk,
     input                   GT_DIFF_REFCLK1_0_clk_n,
     input                   GT_DIFF_REFCLK1_0_clk_p,
 
@@ -165,8 +164,7 @@ module Top_test #(
         .reset(reset), // input reset
 
         // Clock in ports
-        .clk_in1_p(CLK_IN_D_0_clk_p),    // input clk_in1_p
-        .clk_in1_n(CLK_IN_D_0_clk_n)     // input clk_in1_n
+        .clk_in1(clk)
     );
 
     axi_10g_ethernet_0_example_design #(
