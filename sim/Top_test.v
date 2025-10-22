@@ -31,6 +31,8 @@ module Top_test #(
     input                   GT_DIFF_REFCLK1_0_clk_n,
     input                   GT_DIFF_REFCLK1_0_clk_p,
 
+    input                   reset,
+
     // SiTCP Tx Rx
     output                  ETH_TXP, 
     output                  ETH_TXN, 
@@ -56,8 +58,7 @@ module Top_test #(
     (* mark_debug = "true" *)wire s_axi_aclk;
     (* mark_debug = "true" *)wire clk_250M;
     (* mark_debug = "true" *)wire clk_156_25M;
-    wire reset;
-    reg fifo_reset;
+    //reg fifo_reset;
 
     (* mark_debug = "true" *)wire        tx_user_tvalid;
     (* mark_debug = "true" *)wire        tx_user_tready;
@@ -92,7 +93,7 @@ module Top_test #(
       .probe_out3(vio_reset)
    );
 
-    reg         [15:0]      rstn_count;
+    /*reg         [15:0]      rstn_count;
     always @ (posedge coreclk_out) begin
         if(reset) begin
             rstn_count <= 16'b0;
@@ -152,7 +153,7 @@ module Top_test #(
                 end
             endcase
         end
-    end
+    end*/
     
     // 100 -> 50, 250
     clk_wiz_50M axi_lite_clocking_i (
@@ -179,7 +180,7 @@ module Top_test #(
         .refclk_n(GT_DIFF_REFCLK1_0_clk_n),
         .core_ready(core_ready),
         .coreclk_out(coreclk_out),
-        .reset(fifo_reset|vio_reset),
+        .reset(reset|vio_reset),
 
         .txp(ETH_TXP),
         .txn(ETH_TXN),
