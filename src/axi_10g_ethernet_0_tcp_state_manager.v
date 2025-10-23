@@ -298,6 +298,7 @@ endtask
                     if (ack == 1 & seq_number == ack_number_local & ack_number == seq_number_local) begin
                         tcp_state           <=          IDLE           ;
                     end 
+                    tcp_state           <=          IDLE           ;
                 end
                 TIME_WAIT : begin             // 2*MSL (此处MSL指定为30s,RFC 793标准为2 minutes)
                     
