@@ -23,7 +23,7 @@
 module axi_10g_ethernet_0_tcp_block #(
         parameter           BOARD_MAC          =          48'h02_00_c0_a8_0a_0a           ,
         parameter           BOARD_IP           =          {8'd192,8'd168,8'd2,8'd20}      ,
-        parameter           PORT               =          16'h00_16                       ,
+        parameter           PORT               =          16'h00_18                       ,
         parameter           TCP_DATA_LENGTH    =          40                              ,
         parameter           RAM_ADDR_WIDTH     =          13                              
     )
