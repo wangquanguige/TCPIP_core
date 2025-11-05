@@ -304,7 +304,7 @@ endtask
             endcase
 
             if (doutb[67:64] > 4'b1101) begin
-                //disconnect_signal   =   1;
+                disconnect_signal   =   1;
             end
 
             diff_time_temp = link_clk_cnt - doutb[63:0];

@@ -306,9 +306,9 @@ endtask
             endcase
 
             if (disconnect_signal == 1) begin
-                tcp_state   =  IDLE;
+                tcp_state   <=  IDLE;
 
-                state_reset =   1   ;
+                state_reset <=   1   ;
             end
         end
     end

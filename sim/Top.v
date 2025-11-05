@@ -22,9 +22,9 @@
 
 module Top #(
         parameter           BOARD_MAC          =          48'h02_00_c0_a8_0a_0a           ,
-        parameter           BOARD_IP           =          {8'd192,8'd168,8'd2,8'd30}      ,
+        parameter           BOARD_IP           =          {8'd192,8'd168,8'd10,8'd16}      ,
         parameter           TCP_DATA_LENGTH    =       1456,//40
-        parameter           RAM_ADDR_WIDTH     =       14 
+        parameter           RAM_ADDR_WIDTH     =       15 
     )
     (
     input                   CLK_IN_D_0_clk_p,
@@ -102,6 +102,8 @@ module Top #(
     wire              vio_reset;
 
     assign  m_axis_tready   =   1;
+
+    wire clk_100M;
 
     vio_0 vio_signal (
       .clk(coreclk_out),                // input wire clk
@@ -183,9 +185,19 @@ module Top #(
         .reset(reset), // input reset
 
         // Clock in ports
-        .clk_in1_p(CLK_IN_D_0_clk_p),    // input clk_in1_p
-        .clk_in1_n(CLK_IN_D_0_clk_n)     // input clk_in1_n
+        .clk_in1(clk_100M)
     );
+
+    clk_wiz_0 clk_wiz_0_inst
+   (
+    // Clock out ports
+    .clk_out1(clk_100M),     // output clk_out1
+    // Status and control signals
+    .reset(reset), // input reset
+   // Clock in ports
+    .clk_in1_p(CLK_IN_D_0_clk_p),    // input clk_in1_p
+    .clk_in1_n(CLK_IN_D_0_clk_n)     // input clk_in1_n
+   );
 
     axi_10g_ethernet_0_example_design #(
         .BOARD_MAC(BOARD_MAC),
